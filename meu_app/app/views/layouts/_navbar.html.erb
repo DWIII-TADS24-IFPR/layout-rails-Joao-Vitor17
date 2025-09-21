@@ -1,22 +1,29 @@
-<div>
+<nav class="bg-white border-b border-gray-200 shadow-sm mb-6">
+  <div class="container mx-auto px-4 py-4 flex items-center justify-between">
     
-    <% if admin_signed_in? %>
-        <%= current_admin.email %>
-    <% end %>
-
-    <ul>
-        <li>
-            <%= link_to "Home", root_path %>
-        </li>
-
-        <li>
-            <%= link_to "Post", posts_path %>
-        </li>
-
-        <li>
-            <%= link_to "Comment", comments_path %>
-        </li>
+    <ul class="flex items-center space-x-6 text-gray-700 font-medium">
+      <li>
+        <%= link_to "Home", root_path, class: "hover:text-blue-600 transition" %>
+      </li>
+      <li>
+        <%= link_to "Post", posts_path, class: "hover:text-blue-600 transition" %>
+      </li>
+      <li>
+        <%= link_to "Comment", comments_path, class: "hover:text-blue-600 transition" %>
+      </li>
     </ul>
 
-    <%= link_to "Deslogar", destroy_admin_session_path, method: :delete, data: { turbo_method: :delete } %>
-</div>
+    <div class="flex items-center space-x-4">
+      <% if admin_signed_in? %>
+        <span class="text-sm text-gray-600">
+          <%= current_admin.email %>
+        </span>
+
+        <%= link_to "Deslogar", destroy_admin_session_path,
+              method: :delete,
+              data: { turbo_method: :delete },
+              class: "text-red-600 hover:text-red-800 font-semibold text-sm transition" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
