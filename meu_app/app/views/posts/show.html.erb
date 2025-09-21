@@ -1,17 +1,32 @@
-<p style="color: green"><%= notice %></p>
+<%# Exibição de Notificação (flash message) %>
+<% if notice.present? %>
+  <div class="mb-6 p-4 bg-green-100 text-green-800 border border-green-300 rounded">
+    <%= notice %>
+  </div>
+<% end %>
 
-<%= render @post %>
+<div class="container mx-auto px-4">
+  <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Detalhes do Post</h1>
 
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
+  <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+    <%= render @post %>
+    
+    <div class="mt-6 flex justify-between items-center">
+      <%= link_to "Edit this post", edit_post_path(@post), class: "text-blue-600 hover:text-blue-800 font-semibold" %>
+      <%= link_to "Back to posts", posts_path, class: "text-gray-600 hover:text-gray-800 font-medium" %>
+    </div>
 
-  <h2>Comments</h2>
-  <ul>
-    <% @post.comments.each do |comment| %>
-    <li> <%= comment.content %> </li>
-    <% end %>
-  </ul>
+    <h2 class="text-2xl font-bold mt-8 mb-4">Comments</h2>
+    <ul class="space-y-4">
+      <% @post.comments.each do |comment| %>
+        <li class="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
+          <%= comment.content %>
+        </li>
+      <% end %>
+    </ul>
 
-  <%= button_to "Destroy this post", @post, method: :delete %>
+    <div class="mt-6">
+      <%= button_to "Destroy this post", @post, method: :delete, class: "px-5 py-2 bg-red-600 rounded hover:bg-red-700 transition-colors font-semibold" %>
+    </div>
+  </div>
 </div>

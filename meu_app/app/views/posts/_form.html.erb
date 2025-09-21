@@ -1,9 +1,9 @@
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
+    <div class="mb-6 p-4 bg-red-100 text-red-800 border border-red-300 rounded">
+      <h2 class="font-bold text-lg"><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      
+      <ul class="mt-2 list-disc pl-5">
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :tittle, style: "display: block" %>
-    <%= form.text_field :tittle %>
+  <div class="mb-6">
+    <%= form.label :tittle, class: "block text-gray-700 font-medium mb-2" %>
+    <%= form.text_field :tittle, class: "w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.textarea :content %>
+  <div class="mb-6">
+    <%= form.label :content, class: "block text-gray-700 font-medium mb-2" %>
+    <%= form.text_area :content, class: "w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mt-6">
+    <%= form.submit "Save Post", class: "inline-block px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors font-semibold" %>
   </div>
 <% end %>
